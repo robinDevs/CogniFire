@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bertin and class diagram</title>
+    <link rel="stylesheet" href="../../libs/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../libs/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/diagram.css"/>
+
+    <script src="../../libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="../../libs/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../libs/GoJS/go-debug.js"></script>
+
+</head>
+
+<body>
+<div class="container"  style="margin-left:20px; width: 1200px;">
+<H1>A class diagram bertin-ifier</H1>
+
+    <div class="row">
+
+        <div class="col-xs-6">
+        <label class="checkbox-inline" style="color: red; font-weight: bold "><input type="checkbox" id="firstLayer" name="check" checked="true" onchange="toggleVisible('red',this)"> Developper 1: Antoine</label>
+        <label class="checkbox-inline" style="color: blue; font-weight: bold"><input type="checkbox" id="secondLayer" name="check" checked="true" onchange="toggleVisible('blue',this)"> Developper 2: Florient</label>
+        <label class="checkbox-inline" style="color: green; font-weight: bold"><input type="checkbox" id="ThirdLayer" name="check"  checked="true" onchange="toggleVisible('green', this)">Developper 3: Michel</label>
+        </div>
+        <div class="col-xs-6">
+            <label class="radio-inline"><input type="radio" id="priorityRadio-btn" name="radio" onchange="callAddAssociateToProperty()">priority</label>
+            <label class="radio-inline"><input type="radio" id="difficultyRadio-btn" name="radio" onchange="callAddAssociateToProperty()">difficulty</label>
+        <!--<div id="regulator" style="background-color: #ffffff; border : 1px solid #000000; display: inline-block;vertical-align:top" >-->
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" id="Orientation-btn" title="Orientation" onclick="Orientation.associateToAProperty(criteria)">Orientation</button>
+                <button type="button" class="btn btn-default" id="Refresh-btn"  title="Refresh diagram" onclick='history.go(0)' VALUE='Refresh'>Refresh</button>
+
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Class Background
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li> <button id="BackgroundColor-btn"  style="width: 100%" title="Class background color" onclick="BackgroundColor.associateToAProperty(criteria)"> Background Color
+                        </button></li>
+                        <li> <button id="Distance-btn" style="width: 100%" title="Class brightness" onclick="Distance.associateToAProperty(criteria)"> Class brightness
+                        </button></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Class Border
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li> <button id="strokeSize-btn" style="width: 100%"  onclick="StrokeSize.associateToAProperty(criteria)"> Border size
+                        </button></li>
+                        <li> <button id="BorderColor-btn" style="width: 100%" onclick="BorderColor.associateToAProperty(criteria)"> Border Color
+                        </button></li>
+                        <li><button id="BorderDistance-btn"  style="width: 100%" onclick="BorderDistance.associateToAProperty(criteria)"> Border brightness
+                        </button></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Class lines
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li> <button id="strokeLineSize-btn"  tstyle="width: 100%" itle="Stroke Line size" onclick="StrokeLineSize.associateToAProperty(criteria)"> Stroke line size
+                        </button></li>
+                        <li><button id="LineColor-btn" style="width: 100%"  onclick="LineColor.associateToAProperty(criteria)"> Line Color
+                        </button></li>
+                        <li><button id="LineDistance-btn" style="width: 100%" onclick="LineDistance.associateToAProperty(criteria)"> Line brightness
+                        </button></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Class name style
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li> <button id="TextStyle-btn"  style="width: 100%" title="Abstract Class" onclick="TextStyle.associateToAProperty(criteria)"> Abstract class
+                        </button></li>
+                        <li><button id="TextUnderline-btn" style="width: 100%" onclick="TextUnderLine.associateToAProperty(criteria)"> Class name underline
+                        </button></li>
+                        <li> <button id="TextSize-btn"  style="width: 100%" title="class name size" onclick="TextSize.associateToAProperty(criteria)"> Class name size
+                        </button></li>
+                        <li><button id="TextColor-btn"  style="width: 100%" title="Class name color" onclick="TextColor.associateToAProperty(criteria)"> Class name color
+                        </button></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Visibility
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <button id="visibilityAtt-btn"  style="width: 100%" onclick="Visibility.setAttributesVisibility(false)"> Only methods
+                        </button>
+                        <li>  <button id="visibilityOP-btn"  style="width: 100%" onclick="Visibility.setOperationsVisibility(false)"> Only attributes
+                        </button></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+            <!--</div>-->
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-xs-6">
+            <div id="ClassDiagramDiv" style="width:800px;height: 600px;background-color: #e1edf7; border : 1px solid #ffffff; display: inline-block"></div>
+        </div>
+        <div class="col-xs-6">
+            <div id="legend" style="overflow-y:scroll; margin-left:220px; max-height:600px; background-color: #ffffff; border : 1px solid #000000; display: inline-block;vertical-align: top"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="js/colors.js"></script>
+<script src="js/domHelp.js"></script>
+<script src="js/strategies.js"></script>
+<script src="js/decorateDiagrams.js"></script>
+<script src="js/backgroundColor.js"></script>
+<script src="js/distance.js"></script>
+<script src="js/visibility.js"></script>
+<script src="js/strokeLineSize.js"></script>
+<script src="js/strokeSize.js"></script>
+<script src="js/borderColor.js"></script>
+<script src="js/textColor.js"></script>
+<script src="js/textStyle.js"></script>
+<script src="js/textUnderline.js"></script>
+<script src="js/borderDistance.js"></script>
+<script src="js/lineColor.js"></script>
+<script src="js/lineDistance.js"></script>
+<script src="js/Orientation.js"></script>
+<script src="js/textSize.js"></script>
+<script src="js/zoom.js"></script>
+<script src="js/someClasses.js"></script>
+<script src="js/diagram3.js"></script>
+
+</body>
+</html>
